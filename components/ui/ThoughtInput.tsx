@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Send } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { MAX_THOUGHT_LENGTH } from "@/lib/constants";
 
 interface ThoughtInputProps {
   onAddThought: (text: string) => void;
@@ -15,9 +16,10 @@ export function ThoughtInput({ onAddThought }: ThoughtInputProps) {
 
   const handleSubmit = (e?: React.FormEvent) => {
     e?.preventDefault();
-    if (!text.trim()) return;
-    
-    onAddThought(text);
+    const sanitized = text.trim();
+    if (!sanitized) return;
+
+    onAddThought(sanitized);
     setText("");
   };
 
@@ -27,7 +29,7 @@ export function ThoughtInput({ onAddThought }: ThoughtInputProps) {
   }, []);
 
   return (
-    <form 
+    <form
       onSubmit={handleSubmit}
       className="fixed bottom-8 left-1/2 -translate-x-1/2 w-full max-w-md px-4 z-50"
     >
@@ -36,15 +38,20 @@ export function ThoughtInput({ onAddThought }: ThoughtInputProps) {
           ref={inputRef}
           type="text"
           value={text}
-          onChange={(e) => setText(e.target.value)}
+          onChange={(e) => setText(e.target.value.slice(0, MAX_THOUGHT_LENGTH))}
           placeholder="Type your thought..."
+          maxLength={MAX_THOUGHT_LENGTH}
           className={cn(
             "w-full bg-white border-2 border-gray-800",
             "text-gray-900 placeholder:text-gray-400 text-lg px-6 py-4 rounded-full",
+            "pr-20 pb-8",
             "focus:outline-none focus:shadow-[4px_4px_0px_rgba(0,0,0,1)]",
-            "transition-all duration-200"
+            "transition-all duration-200",
           )}
         />
+        <div className="pointer-events-none absolute left-6 bottom-3 text-xs text-gray-400">
+          {text.length}/{MAX_THOUGHT_LENGTH}
+        </div>
         <AnimatePresence>
           {text.trim().length > 0 && (
             <motion.button
