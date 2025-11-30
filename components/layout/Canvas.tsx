@@ -23,6 +23,11 @@ export function Canvas() {
       ref={containerRef}
       className="relative w-full h-screen overflow-hidden bg-[#1a1a1a]"
     >
+      {/* Logo / Fun Element */}
+      <div className="absolute top-6 left-6 z-50 text-4xl select-none hover:scale-125 transition-transform cursor-default drop-shadow-lg">
+        🧠
+      </div>
+
       {/* Controls */}
       <div className="absolute top-4 right-4 z-50 flex gap-2">
         <button
