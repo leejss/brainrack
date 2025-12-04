@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
-import { X } from "lucide-react";
+import { Trash2 } from "lucide-react";
 import { useState } from "react";
 
 export interface Thought {
@@ -55,26 +55,33 @@ export function ThoughtNote({
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
       className={cn(
-        "absolute p-4 w-48 min-h-[120px] cursor-grab flex flex-col justify-between select-none",
-        "text-gray-900 font-medium text-xl leading-snug texture-crumpled",
-        "border-2 border-gray-800 rounded-sm",
+        "absolute p-6 w-56 min-h-[140px] cursor-grab flex flex-col select-none group",
+        "text-gray-800 font-hand text-2xl leading-relaxed texture-crumpled",
+        "border-0 shadow-lg rounded-sm",
       )}
       style={{
-        boxShadow: "4px 4px 0px rgba(0,0,0,0.8)",
+        boxShadow: "2px 4px 8px rgba(0,0,0,0.1)",
       }}
     >
-      <p className="break-words whitespace-pre-wrap">{thought.text}</p>
+      <p className="break-words whitespace-pre-wrap w-full h-full">{thought.text}</p>
 
       <motion.button
-        initial={{ opacity: 0 }}
-        animate={{ opacity: isHovered ? 1 : 0 }}
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: isHovered ? 1 : 0, scale: isHovered ? 1 : 0.8 }}
         onClick={(e) => {
           e.stopPropagation();
           onDelete(thought.id);
         }}
-        className="self-end mt-2 p-1 hover:bg-gray-100 rounded-full text-gray-500 transition-colors"
+        className={cn(
+          "absolute -top-3 -right-3 p-2.5",
+          "bg-white shadow-md rounded-full",
+          "text-gray-400 hover:text-red-500 hover:bg-red-50",
+          "transition-all duration-200 border border-gray-100",
+          "flex items-center justify-center"
+        )}
+        aria-label="Delete note"
       >
-        <X size={16} />
+        <Trash2 size={16} strokeWidth={2.5} />
       </motion.button>
     </motion.div>
   );
