@@ -55,7 +55,7 @@ export function ThoughtNote({
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
       className={cn(
-        "absolute inline-flex p-6 cursor-grab flex-col select-none group",
+        "absolute inline-flex px-4 py-2 cursor-grab flex-col select-none group",
         "text-gray-800 font-hand text-2xl leading-relaxed texture-crumpled",
         "border-0 shadow-lg rounded-sm",
         "max-w-[360px]",

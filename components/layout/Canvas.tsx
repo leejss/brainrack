@@ -1,12 +1,15 @@
 "use client";
 
 import { AnimatePresence } from "framer-motion";
+import { useState } from "react";
 import { ThoughtInput } from "@/components/ui/ThoughtInput";
 import { ThoughtNote } from "@/components/ui/ThoughtNote";
-import { Trash2 } from "lucide-react";
+import { Settings, Trash2 } from "lucide-react";
+import { Modal } from "@/components/ui/Modal";
 import { useThoughtCanvas } from "./useThoughtCanvas";
 
 export function Canvas() {
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const {
     thoughts,
     addThought,
@@ -31,11 +34,11 @@ export function Canvas() {
       {/* Controls */}
       <div className="absolute top-4 right-4 z-50 flex gap-2">
         <button
-          onClick={clearAll}
+          onClick={() => setIsSettingsOpen(true)}
           className="p-3 rounded-full border-2 border-gray-800 bg-white text-gray-800 shadow-[4px_4px_0px_rgba(0,0,0,1)] hover:-translate-y-1 hover:shadow-[6px_6px_0px_rgba(0,0,0,1)] transition-all"
-          title="Clear All"
+          title="Settings"
         >
-          <Trash2 size={24} />
+          <Settings size={24} />
         </button>
       </div>
 
@@ -50,6 +53,25 @@ export function Canvas() {
         ))}
       </AnimatePresence>
       <ThoughtInput onAddThought={addThought} />
+
+      <Modal
+        open={isSettingsOpen}
+        onClose={() => setIsSettingsOpen(false)}
+        title="Settings"
+      >
+        <div className="space-y-3">
+          <button
+            onClick={() => {
+              clearAll();
+              setIsSettingsOpen(false);
+            }}
+            className="w-full inline-flex items-center justify-center gap-2 p-3 rounded-lg border-2 border-gray-800 bg-white text-gray-800 shadow-[4px_4px_0px_rgba(0,0,0,1)] hover:-translate-y-1 hover:shadow-[6px_6px_0px_rgba(0,0,0,1)] transition-all"
+          >
+            <Trash2 size={18} />
+            <span className="font-bold">Clear All</span>
+          </button>
+        </div>
+      </Modal>
     </div>
   );
 }
