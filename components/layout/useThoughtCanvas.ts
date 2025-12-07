@@ -7,7 +7,7 @@ import useHydratedClient from "./hooks/useHydratedClient";
 import usePersistedThoughts from "./hooks/usePersistedThoughts";
 
 const NOTE_PADDING = 50;
-const NOTE_WIDTH = 300;
+const MAX_NOTE_WIDTH = 360;
 const INPUT_GUARD_HEIGHT = 400;
 const MAX_ROTATION_DEGREES = 5;
 
@@ -16,10 +16,11 @@ type ContainerMetrics = {
   height: number;
 };
 
-// hooks pulled into separate files: useHydratedClient and usePersistedThoughts
-
 const createRandomPosition = ({ width, height }: ContainerMetrics) => {
-  const horizontalSpace = Math.max(width - NOTE_WIDTH - NOTE_PADDING * 2, 0);
+  const horizontalSpace = Math.max(
+    width - MAX_NOTE_WIDTH - NOTE_PADDING * 2,
+    0,
+  );
   const verticalSpace = Math.max(height - INPUT_GUARD_HEIGHT - NOTE_PADDING, 0);
 
   const x = NOTE_PADDING + Math.random() * horizontalSpace;

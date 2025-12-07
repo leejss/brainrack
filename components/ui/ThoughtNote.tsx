@@ -55,15 +55,16 @@ export function ThoughtNote({
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
       className={cn(
-        "absolute p-6 w-56 min-h-[140px] cursor-grab flex flex-col select-none group",
+        "absolute inline-flex p-6 cursor-grab flex-col select-none group",
         "text-gray-800 font-hand text-2xl leading-relaxed texture-crumpled",
         "border-0 shadow-lg rounded-sm",
+        "max-w-[360px]",
       )}
       style={{
         boxShadow: "2px 4px 8px rgba(0,0,0,0.1)",
       }}
     >
-      <p className="wrap-break-words whitespace-pre-wrap w-full h-full">
+      <p className="wrap-break-word whitespace-pre-wrap w-full h-full">
         {thought.text}
       </p>
 

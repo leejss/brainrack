@@ -43,13 +43,17 @@ export function ThoughtInput({ onAddThought }: ThoughtInputProps) {
               "px-4 py-1.5 rounded-full text-sm font-medium shadow-xl",
               "border border-white/10",
               "flex items-center gap-2",
-              "pointer-events-none"
+              "pointer-events-none",
             )}
           >
-            <span className={cn(
-              "transition-colors duration-300",
-              text.length >= MAX_THOUGHT_LENGTH ? "text-red-400" : "text-white/90"
-            )}>
+            <span
+              className={cn(
+                "transition-colors duration-300",
+                text.length >= MAX_THOUGHT_LENGTH
+                  ? "text-red-400"
+                  : "text-white/90",
+              )}
+            >
               {text.length}
             </span>
             <span className="text-white/40">/</span>
@@ -67,7 +71,9 @@ export function ThoughtInput({ onAddThought }: ThoughtInputProps) {
             ref={inputRef}
             type="text"
             value={text}
-            onChange={(e) => setText(e.target.value.slice(0, MAX_THOUGHT_LENGTH))}
+            onChange={(e) =>
+              setText(e.target.value.slice(0, MAX_THOUGHT_LENGTH))
+            }
             placeholder="Type your thought..."
             maxLength={MAX_THOUGHT_LENGTH}
             className={cn(
@@ -78,7 +84,7 @@ export function ThoughtInput({ onAddThought }: ThoughtInputProps) {
               "transition-all duration-200",
             )}
           />
-          
+
           <AnimatePresence>
             {text.trim().length > 0 && (
               <motion.button

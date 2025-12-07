@@ -35,7 +35,7 @@ const usePersistedThoughts = () => {
       }
     };
 
-    void loadThoughts();
+    loadThoughts();
 
     return () => {
       isCancelled = true;
@@ -52,7 +52,7 @@ const usePersistedThoughts = () => {
 
   useEffect(() => {
     if (!hasSyncedRef.current) return;
-    void persistThoughts(thoughts);
+    persistThoughts(thoughts);
   }, [thoughts, persistThoughts]);
 
   return { thoughts, setThoughts } as const;
