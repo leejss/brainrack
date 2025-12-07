@@ -63,7 +63,9 @@ export function ThoughtNote({
         boxShadow: "2px 4px 8px rgba(0,0,0,0.1)",
       }}
     >
-      <p className="break-words whitespace-pre-wrap w-full h-full">{thought.text}</p>
+      <p className="wrap-break-words whitespace-pre-wrap w-full h-full">
+        {thought.text}
+      </p>
 
       <motion.button
         initial={{ opacity: 0, scale: 0.8 }}
@@ -77,7 +79,7 @@ export function ThoughtNote({
           "bg-white shadow-md rounded-full",
           "text-gray-400 hover:text-red-500 hover:bg-red-50",
           "transition-all duration-200 border border-gray-100",
-          "flex items-center justify-center"
+          "flex items-center justify-center",
         )}
         aria-label="Delete note"
       >
