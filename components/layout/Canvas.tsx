@@ -8,16 +8,18 @@ import { Settings, Trash2 } from "lucide-react";
 import { Modal } from "@/components/ui/Modal";
 import { useThoughtCanvas } from "./useThoughtCanvas";
 
-export function Canvas() {
+export function Canvas({ workspaceId }: { workspaceId: string }) {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const {
     thoughts,
     addThought,
     deleteThought,
+    moveThought,
     clearAll,
     containerRef,
     isHydrated,
-  } = useThoughtCanvas();
+    isSaving,
+  } = useThoughtCanvas(workspaceId);
 
   if (!isHydrated) return null;
 
@@ -33,6 +35,11 @@ export function Canvas() {
 
       {/* Controls */}
       <div className="absolute top-4 right-4 z-50 flex gap-2">
+        {isSaving && (
+          <div className="px-3 py-2 rounded-full border-2 border-gray-800 bg-white text-gray-800 shadow-[4px_4px_0px_rgba(0,0,0,1)]">
+            <span className="font-bold">Saving...</span>
+          </div>
+        )}
         <button
           onClick={() => setIsSettingsOpen(true)}
           className="p-3 rounded-full border-2 border-gray-800 bg-white text-gray-800 shadow-[4px_4px_0px_rgba(0,0,0,1)] hover:-translate-y-1 hover:shadow-[6px_6px_0px_rgba(0,0,0,1)] transition-all"
@@ -48,6 +55,7 @@ export function Canvas() {
             key={thought.id}
             thought={thought}
             onDelete={deleteThought}
+            onMove={moveThought}
             containerRef={containerRef}
           />
         ))}

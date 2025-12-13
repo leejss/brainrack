@@ -2,6 +2,8 @@
 
 @theme {
   --font-hand: var(--font-patrick-hand);
+  --font-bartle: var(--font-bbh-sans-bartle);
+
   --color-background: #f8f9fa;
   --color-foreground: #212529;
 }

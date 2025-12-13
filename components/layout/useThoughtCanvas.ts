@@ -3,6 +3,7 @@
 import { useRef, useCallback } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { MAX_THOUGHT_LENGTH } from "@/lib/constants";
+import { Thought } from "@/lib/types";
 import useHydratedClient from "./hooks/useHydratedClient";
 import usePersistedThoughts from "./hooks/usePersistedThoughts";
 
@@ -33,8 +34,9 @@ const createRandomPosition = ({ width, height }: ContainerMetrics) => {
   };
 };
 
-export const useThoughtCanvas = () => {
-  const { thoughts, setThoughts } = usePersistedThoughts();
+export const useThoughtCanvas = (workspaceId: string) => {
+  const { thoughts, setThoughts, isSaving, saveNow } =
+    usePersistedThoughts(workspaceId);
   const isHydrated = useHydratedClient();
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -67,6 +69,17 @@ export const useThoughtCanvas = () => {
     [setThoughts],
   );
 
+  const moveThought = useCallback(
+    (id: string, x: number, y: number) => {
+      const next: Thought[] = thoughts.map((item) =>
+        item.id === id ? { ...item, x, y } : item,
+      );
+      setThoughts(next);
+      void saveNow(next);
+    },
+    [saveNow, setThoughts, thoughts],
+  );
+
   const clearAll = useCallback(() => {
     if (window.confirm("Are you sure you want to clear all thoughts?")) {
       setThoughts([]);
@@ -77,8 +90,10 @@ export const useThoughtCanvas = () => {
     thoughts,
     addThought,
     deleteThought,
+    moveThought,
     clearAll,
     containerRef,
     isHydrated,
+    isSaving,
   };
 };

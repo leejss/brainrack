@@ -1,11 +1,18 @@
 import type { Metadata } from "next";
-import { Patrick_Hand } from "next/font/google";
+import { Patrick_Hand, BBH_Sans_Bartle } from "next/font/google";
+
 import "./globals.css";
 
 const patrickHand = Patrick_Hand({
   weight: "400",
   subsets: ["latin"],
   variable: "--font-patrick-hand",
+});
+
+const bbhSansBartle = BBH_Sans_Bartle({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-bbh-sans-bartle",
 });
 
 export const metadata: Metadata = {
@@ -24,10 +31,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${patrickHand.variable} antialiased font-hand overflow-hidden min-h-screen`}
-      >
+    <html
+      lang="en"
+      className={`${patrickHand.variable} ${bbhSansBartle.variable}`}
+    >
+      <body className="antialiased font-hand overflow-hidden min-h-screen">
         {children}
       </body>
     </html>

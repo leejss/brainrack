@@ -1,27 +1,22 @@
 "use client";
 
 import { cn } from "@/lib/utils";
+import type { Thought } from "@/lib/types";
 import { motion } from "framer-motion";
 import { Trash2 } from "lucide-react";
 import { useState } from "react";
 
-export interface Thought {
-  id: string;
-  text: string;
-  x: number;
-  y: number;
-  rotation: number;
-}
-
 interface ThoughtNoteProps {
   thought: Thought;
   onDelete: (id: string) => void;
+  onMove: (id: string, x: number, y: number) => void;
   containerRef: React.RefObject<HTMLDivElement | null>;
 }
 
 export function ThoughtNote({
   thought,
   onDelete,
+  onMove,
   containerRef,
 }: ThoughtNoteProps) {
   const [isHovered, setIsHovered] = useState(false);
@@ -35,6 +30,13 @@ export function ThoughtNote({
       dragConstraints={containerRef}
       dragMomentum={true}
       dragTransition={{ power: 0.2, timeConstant: 200 }}
+      onDragEnd={(_, info) => {
+        onMove(
+          thought.id,
+          thought.x + info.offset.x,
+          thought.y + info.offset.y,
+        );
+      }}
       initial={{ x: thought.x, y: initialY, rotate: 0, scale: 0.5, opacity: 0 }}
       animate={{
         x: thought.x,

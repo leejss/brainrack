@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Send } from "lucide-react";
 import { cn } from "@/lib/utils";
+
 import { MAX_THOUGHT_LENGTH } from "@/lib/constants";
 
 interface ThoughtInputProps {
