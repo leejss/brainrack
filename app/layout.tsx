@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { Patrick_Hand, BBH_Sans_Bartle } from "next/font/google";
+import { IBM_Plex_Sans_KR, BBH_Sans_Bartle } from "next/font/google";
 
 import "./globals.css";
 
-const patrickHand = Patrick_Hand({
-  weight: "400",
+const ibmPlexSansKR = IBM_Plex_Sans_KR({
+  weight: ["400", "500", "600", "700"],
   subsets: ["latin"],
-  variable: "--font-patrick-hand",
+  variable: "--font-ibm-plex-sans-kr",
 });
 
 const bbhSansBartle = BBH_Sans_Bartle({
@@ -33,7 +33,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${patrickHand.variable} ${bbhSansBartle.variable}`}
+      className={`${ibmPlexSansKR.variable} ${bbhSansBartle.variable}`}
     >
       <body className="antialiased font-hand overflow-hidden min-h-screen">
         {children}

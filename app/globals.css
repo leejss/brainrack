@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  --font-hand: var(--font-patrick-hand);
+  --font-hand: var(--font-ibm-plex-sans-kr);
   --font-bartle: var(--font-bbh-sans-bartle);
 
   --color-background: #f8f9fa;
