@@ -10,39 +10,23 @@ import { useThoughtCanvas } from "./useThoughtCanvas";
 
 export function Canvas({ workspaceId }: { workspaceId: string }) {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
-  const {
-    thoughts,
-    addThought,
-    deleteThought,
-    moveThought,
-    clearAll,
-    containerRef,
-    isHydrated,
-    isSaving,
-  } = useThoughtCanvas(workspaceId);
+  const { thoughts, addThought, deleteThought, moveThought, clearAll, containerRef, isHydrated, isSaving } =
+    useThoughtCanvas(workspaceId);
 
   if (!isHydrated) return null;
 
   return (
-    <div
-      ref={containerRef}
-      className="relative w-full h-screen overflow-hidden bg-[#1a1a1a]"
-    >
-      {/* Logo / Fun Element */}
-      <div className="absolute top-6 left-6 z-50 text-4xl select-none hover:scale-125 transition-transform cursor-default drop-shadow-lg">
-        🧠
-      </div>
-
+    <div ref={containerRef} className="relative w-full h-screen overflow-hidden bg-background">
       {/* Controls */}
       <div className="absolute top-4 right-4 z-50 flex gap-2">
         {isSaving && (
-          <div className="px-3 py-2 rounded-full border-2 border-gray-800 bg-white text-gray-800 shadow-[4px_4px_0px_rgba(0,0,0,1)]">
+          <div className="px-3 py-2 rounded-full border-2 border-brand bg-surface text-[var(--color-brand-soft)] shadow-[4px_4px_0px_var(--color-brand-muted)]">
             <span className="font-bold">Saving...</span>
           </div>
         )}
         <button
           onClick={() => setIsSettingsOpen(true)}
-          className="p-3 rounded-full border-2 border-gray-800 bg-white text-gray-800 shadow-[4px_4px_0px_rgba(0,0,0,1)] hover:-translate-y-1 hover:shadow-[6px_6px_0px_rgba(0,0,0,1)] transition-all"
+          className="p-3 rounded-full border-2 border-border bg-surface text-foreground shadow-[4px_4px_0px_var(--color-shadow)] hover:-translate-y-1 hover:shadow-[6px_6px_0px_var(--color-brand-muted)] hover:border-brand hover:text-[var(--color-brand-soft)] transition-all"
           title="Settings"
         >
           <Settings size={24} />
@@ -62,18 +46,14 @@ export function Canvas({ workspaceId }: { workspaceId: string }) {
       </AnimatePresence>
       <ThoughtInput onAddThought={addThought} />
 
-      <Modal
-        open={isSettingsOpen}
-        onClose={() => setIsSettingsOpen(false)}
-        title="Settings"
-      >
+      <Modal open={isSettingsOpen} onClose={() => setIsSettingsOpen(false)} title="Settings">
         <div className="space-y-3">
           <button
             onClick={() => {
               clearAll();
               setIsSettingsOpen(false);
             }}
-            className="w-full inline-flex items-center justify-center gap-2 p-3 rounded-lg border-2 border-gray-800 bg-white text-gray-800 shadow-[4px_4px_0px_rgba(0,0,0,1)] hover:-translate-y-1 hover:shadow-[6px_6px_0px_rgba(0,0,0,1)] transition-all"
+            className="w-full inline-flex items-center justify-center gap-2 p-3 rounded-lg border-2 border-border bg-surface text-foreground shadow-[4px_4px_0px_var(--color-shadow)] hover:-translate-y-1 hover:shadow-[6px_6px_0px_var(--color-shadow)] transition-all"
           >
             <Trash2 size={18} />
             <span className="font-bold">Clear All</span>

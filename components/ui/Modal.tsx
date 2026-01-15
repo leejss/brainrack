@@ -45,7 +45,7 @@ export function Modal({
           exit={{ opacity: 0 }}
           className="fixed inset-0 z-999 flex items-center justify-center p-4"
         >
-          <div className="absolute inset-0 bg-black/60" onClick={onClose} />
+          <div className="absolute inset-0 bg-black/40" onClick={onClose} />
 
           <motion.div
             key="modal-content"
@@ -62,15 +62,15 @@ export function Modal({
             aria-modal="true"
             aria-label={title}
             className={cn(
-              "relative w-full max-w-md bg-white rounded-xl shadow-2xl border border-gray-200",
-              "p-6 text-gray-900",
+              "relative w-full max-w-md bg-surface rounded-xl shadow-2xl border border-border",
+              "p-6 text-foreground",
               className,
             )}
           >
             {/* Close Button */}
             <button
               onClick={onClose}
-              className="absolute top-2 right-2 p-2 rounded-full text-gray-500 hover:text-gray-800 hover:bg-gray-100 transition"
+              className="absolute top-2 right-2 p-2 rounded-full text-muted-foreground hover:text-foreground hover:bg-muted transition"
               aria-label="Close"
             >
               <X size={18} />
@@ -78,10 +78,10 @@ export function Modal({
 
             <div className="mb-4">
               {title && (
-                <h2 className="text-lg font-semibold text-gray-900">{title}</h2>
+                <h2 className="text-lg font-semibold text-foreground">{title}</h2>
               )}
             </div>
-            <div className="text-sm text-gray-600 space-y-4">{children}</div>
+            <div className="text-sm text-muted-foreground space-y-4">{children}</div>
           </motion.div>
         </motion.div>
       )}

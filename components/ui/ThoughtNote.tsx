@@ -58,8 +58,8 @@ export function ThoughtNote({
       onHoverEnd={() => setIsHovered(false)}
       className={cn(
         "absolute inline-flex px-4 py-2 cursor-grab flex-col select-none group",
-        "text-gray-800 font-hand text-2xl leading-relaxed texture-crumpled",
-        "border-0 shadow-lg rounded-sm",
+        "text-slate-100/90 font-hand text-2xl leading-relaxed texture-crumpled",
+        "border border-white/5 shadow-lg rounded-sm",
         "max-w-[360px]",
       )}
       style={{
@@ -79,9 +79,9 @@ export function ThoughtNote({
         }}
         className={cn(
           "absolute -top-3 -right-3 p-2.5",
-          "bg-white shadow-md rounded-full",
-          "text-gray-400 hover:text-red-500 hover:bg-red-50",
-          "transition-all duration-200 border border-gray-100",
+          "bg-surface-raised shadow-md rounded-full",
+          "text-muted-foreground hover:text-[var(--color-danger)] hover:bg-[color:color-mix(in_srgb,var(--color-danger)_15%,transparent)]",
+          "transition-all duration-200 border border-border",
           "flex items-center justify-center",
         )}
         aria-label="Delete note"

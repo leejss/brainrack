@@ -40,9 +40,9 @@ export function ThoughtInput({ onAddThought }: ThoughtInputProps) {
             exit={{ opacity: 0, y: -20, x: "-50%" }}
             className={cn(
               "fixed top-8 left-1/2 z-50",
-              "bg-zinc-900/90 backdrop-blur-md text-white",
+              "bg-surface/90 backdrop-blur-md text-foreground",
               "px-4 py-1.5 rounded-full text-sm font-medium shadow-xl",
-              "border border-white/10",
+              "border border-border",
               "flex items-center gap-2",
               "pointer-events-none",
             )}
@@ -51,14 +51,14 @@ export function ThoughtInput({ onAddThought }: ThoughtInputProps) {
               className={cn(
                 "transition-colors duration-300",
                 text.length >= MAX_THOUGHT_LENGTH
-                  ? "text-red-400"
-                  : "text-white/90",
+                  ? "text-[var(--color-danger)]"
+                  : "text-foreground",
               )}
             >
               {text.length}
             </span>
-            <span className="text-white/40">/</span>
-            <span className="text-white/40">{MAX_THOUGHT_LENGTH}</span>
+            <span className="text-muted-foreground">/</span>
+            <span className="text-muted-foreground">{MAX_THOUGHT_LENGTH}</span>
           </motion.div>
         )}
       </AnimatePresence>
@@ -78,10 +78,10 @@ export function ThoughtInput({ onAddThought }: ThoughtInputProps) {
             placeholder="Type your thought..."
             maxLength={MAX_THOUGHT_LENGTH}
             className={cn(
-              "w-full bg-white border-2 border-gray-800",
-              "text-gray-900 placeholder:text-gray-400 text-lg px-6 py-4 rounded-full",
+              "w-full bg-surface border-2 border-border",
+              "text-foreground placeholder:text-muted-foreground text-lg px-6 py-4 rounded-full",
               "pr-14",
-              "focus:outline-none focus:shadow-[4px_4px_0px_rgba(0,0,0,1)]",
+              "focus:outline-none focus:border-brand focus:shadow-[4px_4px_0px_var(--color-brand-muted)]",
               "transition-all duration-200",
             )}
           />
@@ -93,7 +93,7 @@ export function ThoughtInput({ onAddThought }: ThoughtInputProps) {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.8 }}
                 type="submit"
-                className="absolute right-3 top-1/2 -translate-y-1/2 p-2 bg-gray-100 hover:bg-gray-200 rounded-full text-gray-800 transition-colors border border-gray-300"
+                className="absolute right-3 top-1/2 -translate-y-1/2 p-2 bg-[var(--color-brand-soft)] hover:bg-[color:color-mix(in_srgb,var(--color-brand-soft)_92%,transparent)] rounded-full text-brand-foreground transition-colors border-2 border-brand"
               >
                 <Send size={18} />
               </motion.button>

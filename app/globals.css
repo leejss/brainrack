@@ -1,50 +1,81 @@
 @import "tailwindcss";
 
-@theme {
-  --font-hand: var(--font-ibm-plex-sans-kr);
-  --font-bartle: var(--font-bbh-sans-bartle);
+:root {
+    /* Raw Tokens */
+    --token-color-ink-950: #04070b;
+    --token-color-ink-900: #141a22;
+    --token-color-ink-800: #141a22;
+    --token-color-ink-700: #1b2430;
+    --token-color-ink-600: #242f3d;
+    --token-color-slate-200: #d9dee7;
+    --token-color-slate-300: #bfc7d5;
+    --token-color-slate-400: #9aa3b2;
+    --token-color-brand: #39ff14;
+}
 
-  --color-background: #f8f9fa;
-  --color-foreground: #212529;
+@theme {
+    --font-hand: var(--font-ibm-plex-sans-kr);
+    --font-bartle: var(--font-bbh-sans-bartle);
+
+    /* Semantic Tokens - Dark Theme Default */
+    --color-background: var(--token-color-ink-950);
+    --color-foreground: var(--token-color-slate-200);
+
+    --color-brand: var(--token-color-brand);
+    --color-brand-foreground: var(--token-color-ink-950);
+    --color-brand-muted: rgba(57, 255, 20, 0.12);
+    --color-brand-soft: rgba(57, 255, 20, 0.85);
+
+    --color-surface: var(--token-color-ink-900);
+    --color-surface-raised: var(--token-color-ink-700);
+    --color-surface-foreground: var(--token-color-slate-200);
+
+    --color-border: var(--token-color-ink-600);
+    --color-shadow: rgba(9, 12, 17, 0.55);
+
+    --color-muted: var(--token-color-ink-800);
+    --color-muted-foreground: var(--token-color-slate-400);
+
+    --color-danger: #f08fa1;
 }
 
 body {
-  color: var(--color-foreground);
-  background-color: var(--color-background);
-  background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
-  background-size: 24px 24px;
-  font-family: var(--font-hand), cursive;
+    color: var(--color-foreground);
+    background-color: var(--color-background);
+    background-image: radial-gradient(rgba(57, 255, 20, 0.18) 1px, transparent 1px);
+    background-size: 24px 24px;
+    font-family: var(--font-hand), cursive;
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+    width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: transparent;
+    background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #ccc;
-  border-radius: 4px;
+    background: #2a3544;
+    border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #bbb;
+    background: #354357;
 }
 
-/* Paper Texture Effect */
+/* Paper Texture Effect - Adapted for Dark Theme */
 .texture-paper {
-  background-color: #fff;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.1'/%3E%3C/svg%3E");
-  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.2), inset 0 0 20px rgba(0, 0, 0, 0.05);
+    background-color: var(--color-surface);
+    box-shadow:
+        2px 2px 0px var(--color-shadow),
+        inset 0 0 16px rgba(10, 16, 24, 0.4);
 }
 
 .texture-crumpled {
-  background-color: #fef3c7; /* Light yellow paper base */
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.5' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.1'/%3E%3C/svg%3E"),
-    linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.5) 0%,
-      rgba(0, 0, 0, 0.05) 100%
-    );
-  background-blend-mode: overlay, normal;
+    background-color: #222a36;
+    color: var(--token-color-slate-200);
+    border: 1px solid rgba(57, 255, 20, 0.2);
+    box-shadow:
+        inset 0 0 0 1px rgba(57, 255, 20, 0.25),
+        0 0 12px rgba(57, 255, 20, 0.08),
+        2px 4px 10px rgba(0, 0, 0, 0.25);
 }

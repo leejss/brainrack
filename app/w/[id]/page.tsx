@@ -50,12 +50,15 @@ export default function WorkspacePage() {
 
   return (
     <main>
-      <button
-        onClick={() => router.push("/")}
-        className="fixed top-4 left-20 z-50 px-4 py-2 rounded-full border-2 border-gray-800 bg-white text-gray-800 shadow-[4px_4px_0px_rgba(0,0,0,1)] hover:-translate-y-0.5 hover:shadow-[6px_6px_0px_rgba(0,0,0,1)] transition-all"
-      >
-        Workspaces
-      </button>
+      <div className="fixed top-4 left-6 z-50">
+        <button
+          type="button"
+          onClick={() => router.push("/")}
+          className="text-3xl font-bartle text-[var(--color-brand-soft)]"
+        >
+          Brainrack
+        </button>
+      </div>
       <Canvas workspaceId={workspaceId} />
     </main>
   );
