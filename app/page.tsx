@@ -24,7 +24,7 @@ export default function Home() {
     <main className="min-h-screen flex items-center justify-center p-6">
       <div className="w-full max-w-xl">
         <div className="mb-6">
-          <h1 className="text-4xl font-bartle text-[var(--color-brand-soft)]">Brainrack</h1>
+          <h1 className="text-4xl font-bartle text-brand-soft">Brainrack</h1>
           <p className="text-muted-foreground">Choose a workspace.</p>
         </div>
 
@@ -50,7 +50,7 @@ export default function Home() {
           <button
             type="submit"
             disabled={!canSubmit}
-            className="px-5 py-3 rounded-xl border-2 border-brand bg-[var(--color-brand-soft)] text-brand-foreground hover:-translate-y-0.5 hover:shadow-[6px_6px_0px_var(--color-brand-muted)] transition-all disabled:opacity-50 disabled:hover:translate-y-0 disabled:hover:shadow-[4px_4px_0px_var(--color-brand-muted)]"
+            className="px-5 py-3 rounded-xl border-2 border-brand bg-brand-soft text-brand-foreground font-bold hover:-translate-y-0.5 hover:shadow-[6px_6px_0px_var(--color-brand-muted)] transition-all disabled:opacity-50 disabled:hover:translate-y-0 disabled:hover:shadow-[4px_4px_0px_var(--color-brand-muted)]"
           >
             Create
           </button>
@@ -77,7 +77,7 @@ export default function Home() {
                     await openWorkspace(ws.id);
                     router.push(`/w/${ws.id}`);
                   }}
-                  className="px-4 py-2 rounded-lg border-2 border-border bg-surface text-foreground shadow-[3px_3px_0px_var(--color-shadow)] hover:-translate-y-0.5 hover:shadow-[5px_5px_0px_var(--color-brand-muted)] hover:border-brand hover:bg-[var(--color-brand-soft)] hover:text-brand-foreground transition-all"
+                  className="px-4 py-2 rounded-lg border-2 border-border bg-surface text-foreground shadow-[3px_3px_0px_var(--color-shadow)] hover:-translate-y-0.5 hover:shadow-[5px_5px_0px_var(--color-brand-muted)] hover:border-brand hover:bg-brand-soft hover:text-brand-foreground transition-all"
                 >
                   Open
                 </button>

@@ -20,13 +20,13 @@ export function Canvas({ workspaceId }: { workspaceId: string }) {
       {/* Controls */}
       <div className="absolute top-4 right-4 z-50 flex gap-2">
         {isSaving && (
-          <div className="px-3 py-2 rounded-full border-2 border-brand bg-surface text-[var(--color-brand-soft)] shadow-[4px_4px_0px_var(--color-brand-muted)]">
+          <div className="px-3 py-2 flex items-center bg-transparent text-brand-soft">
             <span className="font-bold">Saving...</span>
           </div>
         )}
         <button
           onClick={() => setIsSettingsOpen(true)}
-          className="p-3 rounded-full border-2 border-border bg-surface text-foreground shadow-[4px_4px_0px_var(--color-shadow)] hover:-translate-y-1 hover:shadow-[6px_6px_0px_var(--color-brand-muted)] hover:border-brand hover:text-[var(--color-brand-soft)] transition-all"
+          className="p-3 rounded-full border-2 border-border bg-surface text-foreground shadow-[4px_4px_0px_var(--color-shadow)] hover:-translate-y-1 hover:shadow-[6px_6px_0px_var(--color-brand-muted)] hover:border-brand hover:text-brand-soft transition-all"
           title="Settings"
         >
           <Settings size={24} />
