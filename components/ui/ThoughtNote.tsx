@@ -21,9 +21,6 @@ export function ThoughtNote({
 }: ThoughtNoteProps) {
   const [isHovered, setIsHovered] = useState(false);
 
-  // Random entrance animation
-  const initialY = typeof window !== "undefined" ? window.innerHeight : 1000;
-
   return (
     <motion.div
       drag
@@ -37,7 +34,13 @@ export function ThoughtNote({
           thought.y + info.offset.y,
         );
       }}
-      initial={{ x: thought.x, y: initialY, rotate: 0, scale: 0.5, opacity: 0 }}
+      initial={{
+        x: thought.x,
+        y: thought.y,
+        rotate: thought.rotation,
+        scale: 0.9,
+        opacity: 0,
+      }}
       animate={{
         x: thought.x,
         y: thought.y,
@@ -52,21 +55,30 @@ export function ThoughtNote({
         stiffness: 100,
         mass: 0.8,
       }}
-      whileHover={{ scale: 1.05, zIndex: 10 }}
-      whileDrag={{ scale: 1.1, zIndex: 20, cursor: "grabbing" }}
+      whileHover={{
+        scale: 1.02,
+        zIndex: 50,
+        boxShadow:
+          "0px 20px 50px var(--color-brand-muted), 0 0 0 2px var(--color-brand)",
+      }}
+      whileDrag={{
+        scale: 1.05,
+        zIndex: 100,
+        cursor: "grabbing",
+        boxShadow:
+          "0px 20px 50px var(--color-brand-muted), 0 0 0 2px var(--color-brand)",
+      }}
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
       className={cn(
-        "absolute inline-flex px-4 py-2 cursor-grab flex-col select-none group",
-        "text-slate-100/90 font-hand text-2xl leading-relaxed texture-crumpled",
-        "border border-white/5 shadow-lg rounded-sm",
-        "max-w-[360px]",
+        "absolute inline-flex p-6 cursor-grab flex-col select-none group",
+        "text-foreground font-hand text-xl leading-8 tracking-wide",
+        "bg-zinc-900/85 backdrop-blur-[2px]",
+        "shadow-[0_4px_20px_rgba(0,0,0,0.2)] rounded-[1px]",
+        "max-w-[340px] min-w-[200px]",
       )}
-      style={{
-        boxShadow: "2px 4px 8px rgba(0,0,0,0.1)",
-      }}
     >
-      <p className="wrap-break-word whitespace-pre-wrap w-full h-full">
+      <p className="wrap-break-word whitespace-pre-wrap w-full h-full drop-shadow-sm">
         {thought.text}
       </p>
 
@@ -78,15 +90,15 @@ export function ThoughtNote({
           onDelete(thought.id);
         }}
         className={cn(
-          "absolute -top-3 -right-3 p-2.5",
-          "bg-surface-raised shadow-md rounded-full",
-          "text-muted-foreground hover:text-[var(--color-danger)] hover:bg-[color:color-mix(in_srgb,var(--color-danger)_15%,transparent)]",
-          "transition-all duration-200 border border-border",
+          "absolute -top-2 -right-2 p-2",
+          "bg-zinc-800 shadow-lg rounded-full",
+          "text-zinc-400 hover:text-red-400 hover:bg-zinc-700",
+          "transition-all duration-200",
           "flex items-center justify-center",
         )}
         aria-label="Delete note"
       >
-        <Trash2 size={16} strokeWidth={2.5} />
+        <Trash2 size={14} strokeWidth={2.5} />
       </motion.button>
     </motion.div>
   );

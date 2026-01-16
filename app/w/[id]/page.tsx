@@ -33,7 +33,7 @@ export default function WorkspacePage() {
     }
 
     if (activeWorkspaceId !== workspaceId) {
-      void openWorkspace(workspaceId);
+      openWorkspace(workspaceId);
     }
   }, [
     activeWorkspaceId,
@@ -54,7 +54,7 @@ export default function WorkspacePage() {
         <button
           type="button"
           onClick={() => router.push("/")}
-          className="text-3xl font-bartle text-[var(--color-brand-soft)]"
+          className="text-3xl font-bartle text-brand-soft"
         >
           Brainrack
         </button>
