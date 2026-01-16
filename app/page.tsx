@@ -3,9 +3,11 @@
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import useWorkspaces from "@/components/layout/hooks/useWorkspaces";
+import WorkspaceItem from "@/components/workspace/WorkspaceItem";
 
 export default function Home() {
   const router = useRouter();
+  const [deletingId, setDeletingId] = useState<string | null>(null);
   const [name, setName] = useState("");
   const {
     isHydrated,
@@ -58,40 +60,20 @@ export default function Home() {
 
         <div className="space-y-3">
           {workspaces.map((ws) => (
-            <div
+            <WorkspaceItem
               key={ws.id}
-              className="flex items-center justify-between gap-3 p-4 rounded-xl border-2 border-border bg-surface shadow-[4px_4px_0px_var(--color-shadow)]"
-            >
-              <div className="min-w-0">
-                <div className="font-bold text-foreground truncate">
-                  {ws.name}
-                </div>
-                <div className="text-sm text-muted-foreground truncate">
-                  {ws.id}
-                </div>
-              </div>
-
-              <div className="flex gap-2 shrink-0">
-                <button
-                  onClick={async () => {
-                    await openWorkspace(ws.id);
-                    router.push(`/w/${ws.id}`);
-                  }}
-                  className="px-4 py-2 rounded-lg border-2 border-border bg-surface text-foreground shadow-[3px_3px_0px_var(--color-shadow)] hover:-translate-y-0.5 hover:shadow-[5px_5px_0px_var(--color-brand-muted)] hover:border-brand hover:bg-brand-soft hover:text-brand-foreground transition-all"
-                >
-                  Open
-                </button>
-                <button
-                  onClick={async () => {
-                    if (!window.confirm("Delete this workspace?")) return;
-                    await deleteWorkspace(ws.id);
-                  }}
-                  className="px-4 py-2 rounded-lg border-2 border-border bg-surface text-foreground shadow-[3px_3px_0px_var(--color-shadow)] hover:-translate-y-0.5 hover:shadow-[5px_5px_0px_var(--color-shadow)] transition-all"
-                >
-                  Delete
-                </button>
-              </div>
-            </div>
+              ws={ws}
+              isDeleting={deletingId === ws.id}
+              onSetDeleting={setDeletingId}
+              onDelete={async (id) => {
+                await deleteWorkspace(id);
+                setDeletingId(null);
+              }}
+              onOpen={async (id) => {
+                await openWorkspace(id);
+                router.push(`/w/${id}`);
+              }}
+            />
           ))}
 
           {workspaces.length === 0 && (
