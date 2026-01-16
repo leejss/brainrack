@@ -1,81 +1,78 @@
 @import "tailwindcss";
 
 :root {
-    /* Raw Tokens */
-    --token-color-ink-950: #04070b;
-    --token-color-ink-900: #141a22;
-    --token-color-ink-800: #141a22;
-    --token-color-ink-700: #1b2430;
-    --token-color-ink-600: #242f3d;
-    --token-color-slate-200: #d9dee7;
-    --token-color-slate-300: #bfc7d5;
-    --token-color-slate-400: #9aa3b2;
-    --token-color-brand: #39ff14;
+  /* Raw Tokens */
+  --token-color-ink-950: #04070b;
+  --token-color-ink-900: #141a22;
+  --token-color-ink-800: #141a22;
+  --token-color-ink-700: #1b2430;
+  --token-color-ink-600: #242f3d;
+  --token-color-slate-200: #d9dee7;
+  --token-color-slate-300: #bfc7d5;
+  --token-color-slate-400: #9aa3b2;
+  --token-color-brand: #39ff14;
 }
 
 @theme {
-    --font-hand: var(--font-ibm-plex-sans-kr);
-    --font-bartle: var(--font-bbh-sans-bartle);
+  --font-hand: var(--font-ibm-plex-sans-kr);
+  --font-bartle: var(--font-bbh-sans-bartle);
 
-    /* Semantic Tokens - Dark Theme Default */
-    --color-background: var(--token-color-ink-950);
-    --color-foreground: var(--token-color-slate-200);
+  /* Semantic Tokens - Dark Theme Default */
+  --color-background: var(--token-color-ink-950);
+  --color-foreground: var(--token-color-slate-200);
 
-    --color-brand: var(--token-color-brand);
-    --color-brand-foreground: var(--token-color-ink-950);
-    --color-brand-muted: rgba(57, 255, 20, 0.12);
-    --color-brand-soft: rgba(57, 255, 20, 0.85);
+  --color-brand: var(--token-color-brand);
+  --color-brand-foreground: var(--token-color-ink-950);
+  --color-brand-muted: rgba(57, 255, 20, 0.12);
+  --color-brand-soft: rgba(57, 255, 20, 0.85);
 
-    --color-surface: var(--token-color-ink-900);
-    --color-surface-raised: var(--token-color-ink-700);
-    --color-surface-foreground: var(--token-color-slate-200);
+  --color-surface: var(--token-color-ink-900);
+  --color-surface-raised: var(--token-color-ink-700);
+  --color-surface-foreground: var(--token-color-slate-200);
 
-    --color-border: var(--token-color-ink-600);
-    --color-shadow: rgba(9, 12, 17, 0.55);
+  --color-border: var(--token-color-ink-600);
+  --color-shadow: rgba(9, 12, 17, 0.55);
 
-    --color-muted: var(--token-color-ink-800);
-    --color-muted-foreground: var(--token-color-slate-400);
+  --color-muted: var(--token-color-ink-800);
+  --color-muted-foreground: var(--token-color-slate-400);
 
-    --color-danger: #f08fa1;
+  --color-danger: #f08fa1;
 }
 
 body {
-    color: var(--color-foreground);
-    background-color: var(--color-background);
-    background-image: radial-gradient(rgba(57, 255, 20, 0.18) 1px, transparent 1px);
-    background-size: 24px 24px;
-    font-family: var(--font-hand), cursive;
+  color: var(--color-foreground);
+  background-color: var(--color-background);
+  /* background-image: radial-gradient(rgba(57, 255, 20, 0.18) 1px, transparent 1px); */
+  background-size: 24px 24px;
+  font-family: var(--font-hand), cursive;
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-    width: 8px;
+  width: 8px;
 }
 ::-webkit-scrollbar-track {
-    background: transparent;
+  background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-    background: #2a3544;
-    border-radius: 4px;
+  background: #2a3544;
+  border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-    background: #354357;
+  background: #354357;
 }
 
 /* Paper Texture Effect - Adapted for Dark Theme */
 .texture-paper {
-    background-color: var(--color-surface);
-    box-shadow:
-        2px 2px 0px var(--color-shadow),
-        inset 0 0 16px rgba(10, 16, 24, 0.4);
+  background-color: var(--color-surface);
+  box-shadow: 2px 2px 0px var(--color-shadow),
+    inset 0 0 16px rgba(10, 16, 24, 0.4);
 }
 
 .texture-crumpled {
-    background-color: #222a36;
-    color: var(--token-color-slate-200);
-    border: 1px solid rgba(57, 255, 20, 0.2);
-    box-shadow:
-        inset 0 0 0 1px rgba(57, 255, 20, 0.25),
-        0 0 12px rgba(57, 255, 20, 0.08),
-        2px 4px 10px rgba(0, 0, 0, 0.25);
+  background-color: #222a36;
+  color: var(--token-color-slate-200);
+  border: 1px solid rgba(57, 255, 20, 0.2);
+  box-shadow: inset 0 0 0 1px rgba(57, 255, 20, 0.25),
+    0 0 12px rgba(57, 255, 20, 0.08), 2px 4px 10px rgba(0, 0, 0, 0.25);
 }
