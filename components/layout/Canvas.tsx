@@ -19,11 +19,15 @@ export function Canvas({ workspaceId }: { workspaceId: string }) {
     addThought,
     deleteThought,
     moveThought,
+    mergeThoughts,
+    updateThought,
     clearAll,
     containerRef,
     isHydrated,
     isSaving,
   } = useThoughtCanvas(workspaceId);
+
+  const [hoveredThoughtId, setHoveredThoughtId] = useState<string | null>(null);
 
   const isClearAllConfirming = clearAllMode === "confirming";
   const isClearingAll = clearAllMode === "clearing";
@@ -58,7 +62,11 @@ export function Canvas({ workspaceId }: { workspaceId: string }) {
             thought={thought}
             onDelete={deleteThought}
             onMove={moveThought}
+            onCombine={mergeThoughts}
+            onUpdate={updateThought}
             containerRef={containerRef}
+            isHoveredByOther={hoveredThoughtId === thought.id}
+            onHoverOver={setHoveredThoughtId}
           />
         ))}
       </AnimatePresence>

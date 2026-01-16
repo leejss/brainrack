@@ -84,11 +84,44 @@ export const useThoughtCanvas = (workspaceId: string) => {
     setThoughts([]);
   }, [setThoughts]);
 
+  const mergeThoughts = useCallback(
+    (sourceId: string, targetId: string) => {
+      setThoughts((prev) => {
+        const source = prev.find((t) => t.id === sourceId);
+        const target = prev.find((t) => t.id === targetId);
+        if (!source || !target) return prev;
+
+        const mergedText = `${target.text}\n\n${source.text}`;
+        
+        // Remove source, update target with merged text
+        const next = prev
+          .filter((t) => t.id !== sourceId)
+          .map((t) => (t.id === targetId ? { ...t, text: mergedText } : t));
+        
+        // We'll let the effect handle saving, but we could explicitly save if needed
+        // void saveNow(next);
+        return next;
+      });
+    },
+    [setThoughts]
+  );
+
+  const updateThought = useCallback(
+    (id: string, text: string) => {
+      setThoughts((prev) =>
+        prev.map((t) => (t.id === id ? { ...t, text } : t))
+      );
+    },
+    [setThoughts]
+  );
+
   return {
     thoughts,
     addThought,
     deleteThought,
     moveThought,
+    mergeThoughts,
+    updateThought,
     clearAll,
     containerRef,
     isHydrated,
