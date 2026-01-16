@@ -5,10 +5,10 @@ import { useRouter } from "next/navigation";
 import useWorkspaces from "@/components/layout/hooks/useWorkspaces";
 import WorkspaceItem from "@/components/workspace/WorkspaceItem";
 import InteractiveBackground from "@/components/background/InteractiveBackground";
+import { Button } from "@/components/ui/Button";
 
 export default function Home() {
   const router = useRouter();
-  const [deletingId, setDeletingId] = useState<string | null>(null);
   const [name, setName] = useState("");
   const {
     isHydrated,
@@ -52,13 +52,9 @@ export default function Home() {
             placeholder="New workspace name"
             className="flex-1 bg-surface border-2 border-border text-foreground px-4 py-3 rounded-xl focus:outline-none focus:border-brand focus:shadow-[4px_4px_0px_var(--color-brand-muted)] transition-all"
           />
-          <button
-            type="submit"
-            disabled={!canSubmit}
-            className="px-5 py-3 rounded-xl border-2 border-brand bg-brand-soft text-brand-foreground font-bold hover:-translate-y-0.5 hover:shadow-[6px_6px_0px_var(--color-brand-muted)] transition-all disabled:opacity-50 disabled:hover:translate-y-0 disabled:hover:shadow-[4px_4px_0px_var(--color-brand-muted)]"
-          >
+          <Button type="submit" disabled={!canSubmit}>
             Create
-          </button>
+          </Button>
         </form>
 
         <div className="space-y-3">
@@ -66,12 +62,7 @@ export default function Home() {
             <WorkspaceItem
               key={ws.id}
               ws={ws}
-              isDeleting={deletingId === ws.id}
-              onSetDeleting={setDeletingId}
-              onDelete={async (id) => {
-                await deleteWorkspace(id);
-                setDeletingId(null);
-              }}
+              onDelete={deleteWorkspace}
               onOpen={async (id) => {
                 await openWorkspace(id);
                 router.push(`/w/${id}`);

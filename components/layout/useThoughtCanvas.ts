@@ -81,9 +81,7 @@ export const useThoughtCanvas = (workspaceId: string) => {
   );
 
   const clearAll = useCallback(() => {
-    if (window.confirm("Are you sure you want to clear all thoughts?")) {
-      setThoughts([]);
-    }
+    setThoughts([]);
   }, [setThoughts]);
 
   return {
