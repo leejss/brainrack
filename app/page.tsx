@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import useWorkspaces from "@/components/layout/hooks/useWorkspaces";
 import WorkspaceItem from "@/components/workspace/WorkspaceItem";
-import InteractiveBackground from "@/components/background/InteractiveBackground";
+
 import { Button } from "@/components/ui/Button";
 
 export default function Home() {
@@ -25,11 +25,11 @@ export default function Home() {
 
   return (
     <main className="relative min-h-screen flex items-center justify-center p-6 overflow-hidden">
-      <InteractiveBackground className="fixed inset-0 z-0" />
+
 
       <div className="w-full max-w-xl relative z-10">
         <div className="mb-6">
-          <h1 className="text-4xl font-bartle text-brand-soft">Brainrack</h1>
+          <h1 className="text-4xl font-bold text-foreground tracking-tight">Brainrack</h1>
           <p className="text-muted-foreground">Choose a workspace.</p>
         </div>
 

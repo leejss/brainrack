@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useMemo } from "react";
 import { useParams, useRouter } from "next/navigation";
+import { useEffect, useMemo } from "react";
 import { Canvas } from "@/components/layout/Canvas";
 import useWorkspaces from "@/components/layout/hooks/useWorkspaces";
 
@@ -54,7 +54,7 @@ export default function WorkspacePage() {
         <button
           type="button"
           onClick={() => router.push("/")}
-          className="text-3xl font-bartle text-brand-soft"
+          className="text-2xl font-bold text-foreground"
         >
           Brainrack
         </button>
