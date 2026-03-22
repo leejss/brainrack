@@ -50,15 +50,6 @@ export default function WorkspacePage() {
 
   return (
     <main>
-      <div className="fixed top-4 left-6 z-50">
-        <button
-          type="button"
-          onClick={() => router.push("/")}
-          className="text-2xl font-bold text-foreground"
-        >
-          Brainrack
-        </button>
-      </div>
       <Canvas workspaceId={workspaceId} />
     </main>
   );
