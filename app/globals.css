@@ -1,42 +1,26 @@
 @import "tailwindcss";
 
 :root {
-  /* Raw Tokens */
-  --token-color-bg: #f6f6ef; /* HN off-white */
-  --token-color-text: #222222; /* dark grey text */
-  --token-color-text-muted: #828282; /* muted text */
-  --token-color-brand: #ff6600; /* HN orange */
-  --token-color-border: #e0e0d8;
-  --token-color-surface: #ffffff;
+  --background: #ffffff;
+  --foreground: #171717;
 }
 
-@theme {
-  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple SD Gothic Neo";
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
 
-  /* Semantic Tokens - HN Minimalist Theme Default */
-  --color-background: var(--token-color-bg);
-  --color-foreground: var(--token-color-text);
-
-  --color-brand: var(--token-color-brand);
-  --color-brand-foreground: #ffffff;
-  --color-brand-muted: rgba(255, 102, 0, 0.12);
-  --color-brand-soft: rgba(255, 102, 0, 0.85);
-
-  --color-surface: var(--token-color-surface);
-  --color-surface-raised: var(--token-color-surface); 
-  --color-surface-foreground: var(--token-color-text);
-
-  --color-border: var(--token-color-border);
-  --color-shadow: transparent; /* No shadows */
-
-  --color-muted: var(--token-color-border);
-  --color-muted-foreground: var(--token-color-text-muted);
-
-  --color-danger: #ff4500;
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
 }
 
 body {
-  color: var(--color-foreground);
-  background-color: var(--color-background);
-  font-family: var(--font-sans);
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
 }
