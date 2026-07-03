@@ -1,7 +1,7 @@
 "use client";
 
-import { MetadataStrip } from "@/components/metadata-strip";
 import { useAppState } from "@/components/app-state-provider";
+import { MetadataStrip } from "@/components/metadata-strip";
 
 export function MetadataStripContainer() {
   const controller = useAppState();

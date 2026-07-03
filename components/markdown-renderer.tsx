@@ -29,7 +29,10 @@ const components: Components = {
 
     if (!language) {
       return (
-        <code className="rounded bg-code-inline px-1.5 py-0.5 font-mono text-[0.92em] text-code-inline-ink" {...props}>
+        <code
+          className="rounded bg-code-inline px-1.5 py-0.5 font-mono text-[0.92em] text-code-inline-ink"
+          {...props}
+        >
           {children}
         </code>
       );

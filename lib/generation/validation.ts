@@ -26,7 +26,9 @@ export function validateWorkedExampleMarkdown(
   const missingSections = REQUIRED_WORKED_EXAMPLE_SECTIONS.filter(
     (section) => !markdown.includes(section),
   );
-  const missingCodeBlock = !/```(?:typescript|ts|python|py)\s+[\s\S]*?```/.test(markdown);
+  const missingCodeBlock = !/```(?:typescript|ts|python|py)\s+[\s\S]*?```/.test(
+    markdown,
+  );
 
   if (missingSections.length === 0 && !missingCodeBlock) {
     return { valid: true };

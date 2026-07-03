@@ -1,6 +1,9 @@
 import { createTextStreamResponse, streamText } from "ai";
 
-import { createGenerationModel, getGenerationModelConfig } from "@/lib/ai/provider";
+import {
+  createGenerationModel,
+  getGenerationModelConfig,
+} from "@/lib/ai/provider";
 import { createWorkedExampleGenerationPlan } from "@/lib/generation/plan";
 import type { WorkedExampleGenerationRequest } from "@/lib/types";
 

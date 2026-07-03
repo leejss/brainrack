@@ -1,13 +1,15 @@
 "use client";
 
-import { Bookmark, BookmarkCheck, Copy, Download, RotateCcw } from "lucide-react";
-
 import {
-  EmptyState,
-  StreamingSkeleton,
-} from "@/components/ui/empty-states";
-import { IconButton } from "@/components/ui/icon-button";
+  Bookmark,
+  BookmarkCheck,
+  Copy,
+  Download,
+  RotateCcw,
+} from "lucide-react";
 import { MarkdownRenderer } from "@/components/markdown-renderer";
+import { EmptyState, StreamingSkeleton } from "@/components/ui/empty-states";
+import { IconButton } from "@/components/ui/icon-button";
 import type { GenerationRecord, GenerationStatus } from "@/lib/types";
 
 type DocumentPanelProps = {
@@ -70,7 +72,9 @@ function DocumentToolbar({
     <div className="mb-3 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
       <div>
         <p className="text-sm font-semibold text-ink">Document</p>
-        <p className="mt-1 text-sm text-muted">Markdown output. Code blocks use Shiki highlighting.</p>
+        <p className="mt-1 text-sm text-muted">
+          Markdown output. Code blocks use Shiki highlighting.
+        </p>
       </div>
       <div className="flex flex-wrap items-center gap-2">
         <BookmarkButton
@@ -78,10 +82,18 @@ function DocumentToolbar({
           disabled={!activeId}
           onClick={() => activeId && onToggleBookmark(activeId)}
         />
-        <IconButton label="Copy Markdown" disabled={!hasOutput} onClick={onCopy}>
+        <IconButton
+          label="Copy Markdown"
+          disabled={!hasOutput}
+          onClick={onCopy}
+        >
           <Copy size={16} />
         </IconButton>
-        <IconButton label="Download Markdown" disabled={!hasOutput} onClick={onDownload}>
+        <IconButton
+          label="Download Markdown"
+          disabled={!hasOutput}
+          onClick={onDownload}
+        >
           <Download size={16} />
         </IconButton>
         <IconButton
@@ -112,7 +124,11 @@ function BookmarkButton({
       disabled={disabled}
       className="flex min-h-10 items-center gap-2 rounded-md bg-panel px-3 text-sm font-medium text-muted shadow-soft transition-transform duration-150 ease-snappy hover:text-ink disabled:cursor-not-allowed disabled:opacity-45 active:scale-[0.96]"
     >
-      {bookmarked ? <BookmarkCheck size={16} className="text-accent" /> : <Bookmark size={16} />}
+      {bookmarked ? (
+        <BookmarkCheck size={16} className="text-accent" />
+      ) : (
+        <Bookmark size={16} />
+      )}
       Bookmark
     </button>
   );

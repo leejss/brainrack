@@ -26,14 +26,16 @@ function AppHeader() {
   return (
     <header className="flex flex-col gap-2 border-b border-line pb-4 sm:flex-row sm:items-end sm:justify-between">
       <div>
-        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted">AI Tutor</p>
+        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted">
+          AI Tutor
+        </p>
         <h1 className="mt-1 text-2xl font-semibold tracking-normal text-balance sm:text-[1.7rem]">
           LeetCode → Worked Example
         </h1>
       </div>
       <p className="max-w-md text-sm leading-6 text-muted">
-        problem을 입력하면 pattern, invariant, code, reflection까지 하나의 Markdown document로
-        생성합니다.
+        problem을 입력하면 pattern, invariant, code, reflection까지 하나의
+        Markdown document로 생성합니다.
       </p>
     </header>
   );

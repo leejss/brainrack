@@ -4,14 +4,8 @@ import { Bookmark, BookmarkCheck, Plus, SquareCode } from "lucide-react";
 
 import { SegmentedControl } from "@/components/ui/segmented-control";
 import { SidebarEmptyState } from "@/components/ui/sidebar-empty-state";
-import {
-  formatGenerationDate,
-  languageLabel,
-} from "@/lib/labels";
-import type {
-  GenerationRecord,
-  SidebarFilter,
-} from "@/lib/types";
+import { formatGenerationDate, languageLabel } from "@/lib/labels";
+import type { GenerationRecord, SidebarFilter } from "@/lib/types";
 
 type HistorySidebarProps = {
   activeId: string | null;
@@ -122,8 +116,14 @@ function HistoryItem({
 }) {
   return (
     <li className="w-64 shrink-0 lg:w-auto">
-      <div className={`group flex rounded-lg transition-colors duration-150 ease-snappy ${itemColor(active)}`}>
-        <button type="button" onClick={onSelect} className="min-w-0 flex-1 px-3 py-3 text-left">
+      <div
+        className={`group flex rounded-lg transition-colors duration-150 ease-snappy ${itemColor(active)}`}
+      >
+        <button
+          type="button"
+          onClick={onSelect}
+          className="min-w-0 flex-1 px-3 py-3 text-left"
+        >
           <span className="flex items-center gap-2">
             <SquareCode size={15} className="shrink-0 text-accent" />
             <span className="truncate text-sm font-medium">{record.title}</span>
@@ -137,9 +137,15 @@ function HistoryItem({
           type="button"
           onClick={onToggleBookmark}
           className="grid size-10 shrink-0 place-items-center self-center rounded-md text-sidebar-muted transition-colors duration-150 ease-snappy hover:text-accent"
-          aria-label={record.bookmarked ? "Remove bookmark" : "Bookmark generation"}
+          aria-label={
+            record.bookmarked ? "Remove bookmark" : "Bookmark generation"
+          }
         >
-          {record.bookmarked ? <BookmarkCheck size={15} /> : <Bookmark size={15} />}
+          {record.bookmarked ? (
+            <BookmarkCheck size={15} />
+          ) : (
+            <Bookmark size={15} />
+          )}
         </button>
       </div>
     </li>

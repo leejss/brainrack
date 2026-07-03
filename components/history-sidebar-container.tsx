@@ -1,7 +1,7 @@
 "use client";
 
-import { HistorySidebar } from "@/components/history-sidebar";
 import { useAppState } from "@/components/app-state-provider";
+import { HistorySidebar } from "@/components/history-sidebar";
 
 export function HistorySidebarContainer() {
   const controller = useAppState();

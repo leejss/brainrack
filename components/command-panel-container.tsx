@@ -1,7 +1,7 @@
 "use client";
 
-import { CommandPanel } from "@/components/command-panel";
 import { useAppState } from "@/components/app-state-provider";
+import { CommandPanel } from "@/components/command-panel";
 
 export function CommandPanelContainer() {
   const controller = useAppState();

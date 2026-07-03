@@ -1,7 +1,7 @@
 "use client";
 
-import { DocumentPanel } from "@/components/document-panel";
 import { useAppState } from "@/components/app-state-provider";
+import { DocumentPanel } from "@/components/document-panel";
 
 export function DocumentPanelContainer() {
   const controller = useAppState();

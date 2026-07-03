@@ -15,7 +15,9 @@ export function getGenerationModelConfig(): GenerationModelConfig {
   };
 }
 
-export function createGenerationModel(config = getGenerationModelConfig()): LanguageModel {
+export function createGenerationModel(
+  config = getGenerationModelConfig(),
+): LanguageModel {
   if (config.provider === "google") {
     const apiKey =
       process.env.GOOGLE_GENERATIVE_AI_API_KEY ?? process.env.GOOGLE_API_KEY;

@@ -10,10 +10,7 @@ import {
   prependGenerationRecord,
   toggleGenerationBookmark,
 } from "@/lib/generation/history";
-import type {
-  GenerationRecord,
-  SidebarFilter,
-} from "@/lib/types";
+import type { GenerationRecord, SidebarFilter } from "@/lib/types";
 
 export function useGenerationHistory() {
   const [history, setHistory] = useState<GenerationRecord[]>([]);
@@ -83,6 +80,11 @@ export function useGenerationHistory() {
   };
 }
 
-function filterGenerationHistory(history: GenerationRecord[], filter: SidebarFilter) {
-  return filter === "bookmarked" ? history.filter((record) => record.bookmarked) : history;
+function filterGenerationHistory(
+  history: GenerationRecord[],
+  filter: SidebarFilter,
+) {
+  return filter === "bookmarked"
+    ? history.filter((record) => record.bookmarked)
+    : history;
 }

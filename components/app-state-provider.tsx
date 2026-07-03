@@ -12,7 +12,9 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
   const controller = useWorkedExampleController();
 
   return (
-    <AppStateContext.Provider value={controller}>{children}</AppStateContext.Provider>
+    <AppStateContext.Provider value={controller}>
+      {children}
+    </AppStateContext.Provider>
   );
 }
 

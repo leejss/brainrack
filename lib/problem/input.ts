@@ -1,4 +1,9 @@
-export type ProblemInputKind = "url" | "number" | "title" | "statement" | "mixed";
+export type ProblemInputKind =
+  | "url"
+  | "number"
+  | "title"
+  | "statement"
+  | "mixed";
 
 export type NormalizedProblemInput = {
   raw: string;
@@ -10,7 +15,9 @@ export type NormalizedProblemInput = {
 
 const LEETCODE_PROBLEM_PATH = /leetcode\.com\/problems\/([^/?#]+)/i;
 
-export function normalizeProblemInput(rawInput: string): NormalizedProblemInput {
+export function normalizeProblemInput(
+  rawInput: string,
+): NormalizedProblemInput {
   const raw = rawInput.trim();
 
   if (!raw) {

@@ -31,7 +31,8 @@ export function EmptyState() {
         문제를 입력하면 Worked Example이 생성됩니다.
       </p>
       <p className="mt-2 max-w-md text-sm leading-6 text-muted">
-        pattern signal, subgoal, invariant, code, reflection 순서로 학습용 문서를 구성합니다.
+        pattern signal, subgoal, invariant, code, reflection 순서로 학습용
+        문서를 구성합니다.
       </p>
     </div>
   );

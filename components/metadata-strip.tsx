@@ -3,11 +3,7 @@
 import { Loader2 } from "lucide-react";
 import type { ReactNode } from "react";
 
-import {
-  languageLabel,
-  learnerModeLabel,
-  statusLabel,
-} from "@/lib/labels";
+import { languageLabel, learnerModeLabel, statusLabel } from "@/lib/labels";
 import type {
   GenerationStatus,
   LearnerLevel,
@@ -36,7 +32,8 @@ export function MetadataStrip({
       <div className="min-w-0">
         <p className="truncate font-semibold text-ink">{title}</p>
         <p className="mt-1 truncate">
-          {statusLabel(status)} · {languageLabel(language)} · {learnerModeLabel(learnerLevel)}
+          {statusLabel(status)} · {languageLabel(language)} ·{" "}
+          {learnerModeLabel(learnerLevel)}
         </p>
       </div>
       <div className="flex flex-wrap gap-2">
@@ -63,7 +60,9 @@ function Badge({
   return (
     <span
       className={`inline-flex min-h-8 items-center gap-1.5 rounded-md px-2.5 font-medium ${
-        tone === "accent" ? "bg-accent-soft text-accent-ink" : "bg-control text-muted"
+        tone === "accent"
+          ? "bg-accent-soft text-accent-ink"
+          : "bg-control text-muted"
       }`}
     >
       {children}

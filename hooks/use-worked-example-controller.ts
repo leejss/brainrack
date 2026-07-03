@@ -1,18 +1,14 @@
 "use client";
 
 import { useRef, useState } from "react";
-
-import { useGenerationHistory } from "@/hooks/use-generation-history";
 import { streamWorkedExampleFromApi } from "@/client/api-client";
+import { useGenerationHistory } from "@/hooks/use-generation-history";
 import { createGenerationRecord } from "@/lib/generation/history";
-import {
-  slugifyForFilename,
-  titleFromProblemQuery,
-} from "@/lib/problem/input";
 import {
   describeWorkedExampleValidationFailure,
   validateWorkedExampleMarkdown,
 } from "@/lib/generation/validation";
+import { slugifyForFilename, titleFromProblemQuery } from "@/lib/problem/input";
 import {
   DEFAULT_AI_MODEL,
   DEFAULT_AI_PROVIDER,
@@ -29,8 +25,12 @@ export function useWorkedExampleController() {
   const [markdown, setMarkdown] = useState("");
   const [status, setStatus] = useState<GenerationStatus>("idle");
   const [error, setError] = useState<string | null>(null);
-  const [learnerLevel, setLearnerLevel] = useState<LearnerLevel>(DEFAULT_LEARNER_LEVEL);
-  const [language, setLanguage] = useState<SolutionLanguage>(DEFAULT_SOLUTION_LANGUAGE);
+  const [learnerLevel, setLearnerLevel] = useState<LearnerLevel>(
+    DEFAULT_LEARNER_LEVEL,
+  );
+  const [language, setLanguage] = useState<SolutionLanguage>(
+    DEFAULT_SOLUTION_LANGUAGE,
+  );
   const abortRef = useRef<AbortController | null>(null);
   const history = useGenerationHistory();
   const visibleError = error ?? history.historyError;

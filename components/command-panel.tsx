@@ -1,7 +1,7 @@
 "use client";
 
-import { type FormEvent } from "react";
 import { Send, StopCircle } from "lucide-react";
+import type { FormEvent } from "react";
 
 import { SegmentedControl } from "@/components/ui/segmented-control";
 import type {

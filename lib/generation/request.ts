@@ -43,7 +43,10 @@ export function parseSolutionLanguage(value: unknown): SolutionLanguage {
   return value === "python" ? "python" : DEFAULT_SOLUTION_LANGUAGE;
 }
 
-function readStringProperty(body: unknown, key: keyof WorkedExampleRequestBody) {
+function readStringProperty(
+  body: unknown,
+  key: keyof WorkedExampleRequestBody,
+) {
   const value = readProperty(body, key);
   return typeof value === "string" ? value : "";
 }

@@ -9,7 +9,9 @@ import {
 
 export const WORKED_EXAMPLE_HISTORY_STORAGE_KEY = "brainrack.workedExamples.v1";
 
-export function parseGenerationHistory(serializedHistory: string | null): GenerationRecord[] {
+export function parseGenerationHistory(
+  serializedHistory: string | null,
+): GenerationRecord[] {
   if (!serializedHistory) {
     return [];
   }
@@ -17,7 +19,9 @@ export function parseGenerationHistory(serializedHistory: string | null): Genera
   try {
     const parsedValue: unknown = JSON.parse(serializedHistory);
     return Array.isArray(parsedValue)
-      ? parsedValue.filter(isGenerationRecord).slice(0, GENERATION_HISTORY_LIMIT)
+      ? parsedValue
+          .filter(isGenerationRecord)
+          .slice(0, GENERATION_HISTORY_LIMIT)
       : [];
   } catch {
     return [];
@@ -36,7 +40,9 @@ export function toggleGenerationBookmark(
   recordId: string,
 ): GenerationRecord[] {
   return history.map((record) =>
-    record.id === recordId ? { ...record, bookmarked: !record.bookmarked } : record,
+    record.id === recordId
+      ? { ...record, bookmarked: !record.bookmarked }
+      : record,
   );
 }
 
@@ -80,7 +86,8 @@ function isGenerationRecord(value: unknown): value is GenerationRecord {
     isNonEmptyString(value.model) &&
     isNonEmptyString(value.provider) &&
     typeof value.bookmarked === "boolean" &&
-    (value.learnerLevel === "novice-intermediate" || value.learnerLevel === "advanced") &&
+    (value.learnerLevel === "novice-intermediate" ||
+      value.learnerLevel === "advanced") &&
     (value.language === "typescript" || value.language === "python")
   );
 }

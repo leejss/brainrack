@@ -66,5 +66,7 @@ function controlColor(isActive: boolean, isSidebar: boolean) {
       : "bg-panel text-ink shadow-soft";
   }
 
-  return isSidebar ? "text-sidebar-muted hover:text-sidebar-ink" : "text-muted hover:text-ink";
+  return isSidebar
+    ? "text-sidebar-muted hover:text-sidebar-ink"
+    : "text-muted hover:text-ink";
 }
