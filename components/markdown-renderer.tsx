@@ -30,7 +30,7 @@ const components: Components = {
     if (!language) {
       return (
         <code
-          className="rounded bg-code-inline px-1.5 py-0.5 font-mono text-[0.92em] text-code-inline-ink"
+          className="rounded-md bg-code-inline border border-line px-1.5 py-0.5 font-mono text-[0.85em] font-semibold text-code-inline-ink"
           {...props}
         >
           {children}

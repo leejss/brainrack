@@ -28,7 +28,7 @@ export function DocumentPanelContainer() {
       activeRecord={activeRecord}
       activeId={activeId}
       error={visibleError(error, historyError)}
-      hasOutput={Boolean(markdown)}
+      hasOutput={Boolean(activeId && markdown.trim())}
       markdown={markdown}
       query={query}
       status={status}

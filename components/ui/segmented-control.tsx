@@ -1,6 +1,7 @@
 "use client";
 
 type SegmentedControlProps<T extends string> = {
+  ariaLabel: string;
   value: T;
   onChange: (value: T) => void;
   options: Array<readonly [T, string]>;
@@ -8,6 +9,7 @@ type SegmentedControlProps<T extends string> = {
 };
 
 export function SegmentedControl<T extends string>({
+  ariaLabel,
   value,
   onChange,
   options,
@@ -16,9 +18,12 @@ export function SegmentedControl<T extends string>({
   const isSidebar = variant === "sidebar";
 
   return (
-    <div
-      className={`grid grid-cols-2 rounded-md p-1 ${
-        isSidebar ? "bg-sidebar-soft" : "bg-control"
+    <fieldset
+      aria-label={ariaLabel}
+      className={`grid grid-flow-col auto-cols-fr rounded-lg p-0.5 border transition-all duration-200 ${
+        isSidebar
+          ? "bg-sidebar-soft/50 border-sidebar-soft"
+          : "bg-control/60 border-line/60"
       }`}
     >
       {options.map(([optionValue, label]) => (
@@ -30,7 +35,7 @@ export function SegmentedControl<T extends string>({
           onClick={() => onChange(optionValue)}
         />
       ))}
-    </div>
+    </fieldset>
   );
 }
 
@@ -48,8 +53,9 @@ function SegmentedControlOption({
   return (
     <button
       type="button"
+      aria-pressed={isActive}
       onClick={onClick}
-      className={`min-h-9 rounded-[0.375rem] px-2 text-xs font-semibold transition-colors duration-150 ease-snappy ${controlColor(
+      className={`min-h-11 rounded-md px-3 text-[0.72rem] font-bold tracking-tight transition-all duration-200 ease-snappy active:scale-[0.97] cursor-pointer ${controlColor(
         isActive,
         isSidebar,
       )}`}
@@ -62,11 +68,11 @@ function SegmentedControlOption({
 function controlColor(isActive: boolean, isSidebar: boolean) {
   if (isActive) {
     return isSidebar
-      ? "bg-sidebar-hover text-sidebar-ink shadow-soft"
-      : "bg-panel text-ink shadow-soft";
+      ? "bg-sidebar-hover text-sidebar-ink shadow-soft border border-sidebar-soft"
+      : "bg-panel text-ink shadow-soft border border-line/40";
   }
 
   return isSidebar
-    ? "text-sidebar-muted hover:text-sidebar-ink"
-    : "text-muted hover:text-ink";
+    ? "text-sidebar-muted/80 hover:text-sidebar-ink hover:bg-sidebar-hover/30 border border-transparent"
+    : "text-muted hover:text-ink hover:bg-control/40 border border-transparent";
 }

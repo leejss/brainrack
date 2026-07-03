@@ -18,17 +18,17 @@ export function languageLabel(value: SolutionLanguage) {
 }
 
 export function learnerModeLabel(value: LearnerLevel) {
-  return value === "advanced" ? "Advanced" : "Guided";
+  return value === "advanced" ? "고급" : "가이드";
 }
 
 export function statusLabel(value: GenerationStatus) {
   if (value === "streaming") {
-    return "Generating";
+    return "생성 중";
   }
 
   if (value === "error") {
-    return "Needs attention";
+    return "확인 필요";
   }
 
-  return "Ready";
+  return "준비됨";
 }

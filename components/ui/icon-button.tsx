@@ -18,7 +18,7 @@ export function IconButton({
       type="button"
       onClick={onClick}
       disabled={disabled}
-      className="grid size-10 place-items-center rounded-md bg-panel text-muted shadow-soft transition-transform duration-150 ease-snappy hover:text-ink disabled:cursor-not-allowed disabled:opacity-45 active:scale-[0.96]"
+      className="grid size-11 place-items-center rounded-lg border border-line bg-panel text-muted/80 shadow-soft transition-all duration-200 hover:text-ink hover:border-muted/80 hover:bg-control/20 disabled:cursor-not-allowed disabled:opacity-35 disabled:shadow-none disabled:bg-panel disabled:border-line/60 active:scale-[0.94] cursor-pointer"
       aria-label={label}
       title={label}
     >

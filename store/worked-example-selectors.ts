@@ -1,3 +1,4 @@
+import { titleForKnownExampleQuery } from "@/lib/problem/examples";
 import { titleFromProblemQuery } from "@/lib/problem/input";
 import {
   DEFAULT_AI_MODEL,
@@ -33,9 +34,14 @@ export function outputTitle(
   activeRecord: GenerationRecord | null,
   query: string,
 ) {
+  const trimmedQuery = query.trim();
+
   return (
     activeRecord?.title ??
-    (query.trim() ? titleFromProblemQuery(query) : "New Worked Example")
+    (trimmedQuery
+      ? (titleForKnownExampleQuery(trimmedQuery) ??
+        titleFromProblemQuery(trimmedQuery))
+      : "New Worked Example")
   );
 }
 
