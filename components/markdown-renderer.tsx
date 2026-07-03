@@ -3,7 +3,7 @@
 import ReactMarkdown, { type Components } from "react-markdown";
 import remarkGfm from "remark-gfm";
 
-import { ShikiCodeBlock } from "@/components/worked-example/shiki-code-block";
+import { ShikiCodeBlock } from "@/components/shiki-code-block";
 
 type MarkdownRendererProps = {
   markdown: string;

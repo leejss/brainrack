@@ -24,7 +24,7 @@ export function normalizeProblemInput(rawInput: string): NormalizedProblemInput 
       raw,
       kind: "url",
       slug: slugFromUrl,
-      title: titleFromSlug(slugFromUrl),
+      title: titleFromProblemSlug(slugFromUrl),
     };
   }
 
@@ -49,7 +49,7 @@ export function normalizeProblemInput(rawInput: string): NormalizedProblemInput 
       raw,
       kind: "title",
       title: raw,
-      slug: slugFromTitle(raw),
+      slug: slugFromProblemTitle(raw),
     };
   }
 
@@ -67,7 +67,17 @@ function firstNonEmptyLine(value: string) {
     .find(Boolean);
 }
 
-function slugFromTitle(title: string) {
+export function titleFromProblemQuery(query: string) {
+  const slug = query.match(LEETCODE_PROBLEM_PATH)?.[1];
+
+  if (slug) {
+    return titleFromProblemSlug(slug);
+  }
+
+  return query.length > 48 ? `${query.slice(0, 45)}...` : query;
+}
+
+export function slugFromProblemTitle(title: string) {
   return title
     .trim()
     .toLowerCase()
@@ -75,10 +85,14 @@ function slugFromTitle(title: string) {
     .replace(/^-+|-+$/g, "");
 }
 
-function titleFromSlug(slug: string) {
+export function titleFromProblemSlug(slug: string) {
   return slug
     .split("-")
     .filter(Boolean)
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");
+}
+
+export function slugifyForFilename(value: string) {
+  return slugFromProblemTitle(value) || "worked-example";
 }
