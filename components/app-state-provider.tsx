@@ -1,29 +1,43 @@
 "use client";
 
-import { createContext, type ReactNode, useContext } from "react";
+import {
+  createContext,
+  type ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
+import { useStore } from "zustand";
 
-import { useWorkedExampleController } from "@/hooks/use-worked-example-controller";
+import {
+  createWorkedExampleStore,
+  type WorkedExampleStore,
+} from "@/store/worked-example-store";
 
-type AppState = ReturnType<typeof useWorkedExampleController>;
+type AppStateStoreApi = ReturnType<typeof createWorkedExampleStore>;
 
-const AppStateContext = createContext<AppState | null>(null);
+const AppStateContext = createContext<AppStateStoreApi | null>(null);
 
 export function AppStateProvider({ children }: { children: ReactNode }) {
-  const controller = useWorkedExampleController();
+  const [store] = useState(() => createWorkedExampleStore());
+
+  useEffect(() => {
+    store.getState().loadHistory(window.localStorage);
+  }, [store]);
 
   return (
-    <AppStateContext.Provider value={controller}>
+    <AppStateContext.Provider value={store}>
       {children}
     </AppStateContext.Provider>
   );
 }
 
-export function useAppState() {
-  const state = useContext(AppStateContext);
+export function useAppState<T>(selector: (state: WorkedExampleStore) => T) {
+  const store = useContext(AppStateContext);
 
-  if (!state) {
+  if (!store) {
     throw new Error("useAppState must be used inside AppStateProvider.");
   }
 
-  return state;
+  return useStore(store, selector);
 }
