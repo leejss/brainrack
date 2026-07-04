@@ -87,13 +87,6 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-button,
-textarea,
-input {
-  font: inherit;
-  color: inherit;
-}
-
 /* Custom Scrollbar for Workspace Sidebar & Main Shell */
 ::-webkit-scrollbar {
   width: 6px;

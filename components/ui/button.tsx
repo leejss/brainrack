@@ -35,7 +35,7 @@ export function Button({
       type={type}
       data-slot="button"
       className={cn(
-        "inline-flex shrink-0 items-center justify-center rounded-md font-medium whitespace-nowrap outline-none transition-[background-color,border-color,box-shadow,color,opacity] duration-200 ease-snappy",
+        "inline-flex shrink-0 items-center justify-center rounded-md font-bold whitespace-nowrap outline-none transition-[background-color,border-color,box-shadow,color,opacity] duration-200 ease-snappy",
         "focus-visible:ring-3 focus-visible:ring-accent/20",
         "disabled:pointer-events-none disabled:opacity-50",
         "[&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
