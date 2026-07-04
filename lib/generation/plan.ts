@@ -3,20 +3,22 @@ import {
   WORKED_EXAMPLE_SYSTEM_INSTRUCTIONS,
 } from "@/lib/ai/instructions";
 import { normalizeProblemInput } from "@/lib/problem/input";
-import type { WorkedExampleGenerationRequest } from "@/lib/types";
+import type { LearnerLevel, SolutionLanguage } from "@/lib/types";
 
-export type WorkedExampleGenerationPlan = {
+export type WorkedExamplePromptPlan = {
   instructions: string;
   prompt: string;
-  temperature: number;
-  maxOutputTokens: number;
-  timeoutMs: number;
-  maxRetries: number;
 };
 
-export function createWorkedExampleGenerationPlan(
-  request: WorkedExampleGenerationRequest,
-): WorkedExampleGenerationPlan {
+export type WorkedExamplePromptRequest = {
+  query: string;
+  learnerLevel: LearnerLevel;
+  language: SolutionLanguage;
+};
+
+export function createWorkedExamplePromptPlan(
+  request: WorkedExamplePromptRequest,
+): WorkedExamplePromptPlan {
   const problem = normalizeProblemInput(request.query);
 
   return {
@@ -26,9 +28,5 @@ export function createWorkedExampleGenerationPlan(
       learnerLevel: request.learnerLevel,
       language: request.language,
     }),
-    temperature: 0.3,
-    maxOutputTokens: 4200,
-    timeoutMs: 55_000,
-    maxRetries: 1,
   };
 }
