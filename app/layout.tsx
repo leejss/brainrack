@@ -1,38 +1,20 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import type { ReactNode } from "react";
 import "./globals.css";
-import { AppLayout } from "@/components/app-layout";
-import { AppStoreProvider } from "@/components/app-store-provider";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
-  title: "Brainrack",
-  description: "Research-based Worked Example generator for LeetCode problems.",
+  title: {
+    default: "Brainrack",
+    template: "%s · Brainrack",
+  },
+  description: "파일로 관리하는 로컬 Markdown 블로그.",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html
-      lang="ko"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">
-        <AppStoreProvider>
-          <AppLayout>{children}</AppLayout>
-        </AppStoreProvider>
+    <html lang="ko">
+      <body className="min-h-screen bg-[#f7f7f8] p-[30px] font-mono text-xs leading-5 text-[#111] selection:bg-[#111] selection:text-[#f7f7f8] dark:bg-[#070708] dark:text-[#f7f7f8] dark:selection:bg-[#f7f7f8] dark:selection:text-[#070708] sm:p-10">
+        {children}
       </body>
     </html>
   );

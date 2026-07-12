@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Brainrack
 
-## Getting Started
+Brainrack은 저장소 안의 Markdown 파일을 정적 페이지로 렌더링하는 Next.js 블로그입니다.
 
-First, run the development server:
+## Stack
+
+- Next.js 16 App Router
+- React 19
+- Local Markdown + front matter
+- Tailwind CSS 4 + Typography
+- Vercel (`icn1`)
+
+## Local setup
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+환경변수와 외부 데이터베이스는 필요하지 않습니다.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Writing
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+`content/posts`에 `.md` 파일을 추가합니다. 파일명은 URL slug가 되므로 영문 소문자, 숫자, 하이픈만 사용합니다.
 
-## Learn More
+```markdown
+---
+title: "글 제목"
+description: "글 요약"
+publishedAt: "2026-07-12"
+sourceUrl: "https://example.com/optional-source"
+---
 
-To learn more about Next.js, take a look at the following resources:
+Markdown 본문
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+필수 front matter는 `title`, `description`, `publishedAt`입니다. `sourceUrl`은 선택입니다. 잘못된 파일은 빌드에서 즉시 실패합니다.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Validation
 
-## Deploy on Vercel
+```bash
+npm run lint
+npm run typecheck
+npm run test
+npm run build
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Markdown 내부 raw HTML은 렌더링하지 않습니다. 글의 추가·수정·삭제는 파일과 Git으로 관리합니다.
