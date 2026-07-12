@@ -30,31 +30,11 @@
   },
   "overrides": [
     {
-      "includes": ["components/shiki-code-block.tsx"],
-      "linter": {
-        "rules": {
-          "security": {
-            "noDangerouslySetInnerHtml": "off"
-          }
-        }
-      }
-    },
-    {
       "includes": ["public/**/*.svg"],
       "linter": {
         "rules": {
           "a11y": {
             "noSvgWithoutTitle": "off"
-          }
-        }
-      }
-    },
-    {
-      "includes": ["app/globals.css"],
-      "linter": {
-        "rules": {
-          "complexity": {
-            "noImportantStyles": "off"
           }
         }
       }
