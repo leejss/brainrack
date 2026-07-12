@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <title>Brainrack</title>
+  <style>
+    .background { fill: #211f1c; }
+    .bracket { stroke: #f4f1ec; }
+
+    @media (prefers-color-scheme: dark) {
+      .background { fill: #f2eee8; }
+      .bracket { stroke: #211f1c; }
+    }
+  </style>
+  <rect class="background" width="64" height="64" rx="14" />
+  <path
+    class="bracket"
+    d="M25 17h-7v30h7M39 17h7v30h-7"
+    fill="none"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    stroke-width="5"
+  />
+  <circle cx="32" cy="32" r="7" fill="#a65d45" />
+</svg>

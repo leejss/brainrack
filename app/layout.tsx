@@ -8,6 +8,10 @@ export const metadata: Metadata = {
     template: "%s · Brainrack",
   },
   description: "파일로 관리하는 로컬 Markdown 블로그.",
+  icons: {
+    icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
+    shortcut: "/icon.svg",
+  },
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
