@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SiteMark } from "@/components/site-mark";
 import { getAllPosts } from "@/lib/posts";
 
 const dateFormatter = new Intl.DateTimeFormat("ko-KR", {
@@ -9,33 +10,28 @@ function PostList() {
   const posts = getAllPosts();
 
   if (posts.length === 0) {
-    return <p className="m-0 text-black/50 dark:text-white/50">- NO POSTS</p>;
+    return <p className="text-black/50 dark:text-white/50">- NO POSTS</p>;
   }
 
   return (
-    <ul className="m-0 list-none p-0">
+    <ul className="list-none p-0">
       {posts.map((post) => (
         <li
-          className="mb-[1lh] [contain-intrinsic-size:40px] [content-visibility:auto] wrap-anywhere"
+          className="group py-4 [contain-intrinsic-size:64px] [content-visibility:auto] wrap-anywhere"
           key={post.slug}
         >
-          <div>
-            <span aria-hidden="true">- [</span>
-            <Link
-              className="underline decoration-1 underline-offset-2 hover:no-underline"
-              href={`/posts/${post.slug}`}
-            >
-              {post.title}
-            </Link>
-            <span aria-hidden="true">]</span>
-          </div>
-          <div className="ml-[2ch] text-black/50 dark:text-white/50">
-            <time dateTime={post.publishedAt}>
-              {dateFormatter.format(new Date(post.publishedAt))}
-            </time>
-            <span aria-hidden="true"> · </span>
-            <span>{post.description}</span>
-          </div>
+          <Link className="block" href={`/posts/${post.slug}`}>
+            <div className="flex items-center justify-between gap-3">
+              <span className="font-sans text-base font-semibold tracking-tight decoration-black/25 decoration-1 underline-offset-4 transition-colors group-hover:text-accent dark:decoration-white/25">
+                {post.title}
+              </span>
+              <div className="mt-1 flex flex-col gap-x-3 text-[11px] text-black/50 sm:flex-row sm:items-baseline dark:text-white/50">
+                <time dateTime={post.publishedAt}>
+                  {dateFormatter.format(new Date(post.publishedAt))}
+                </time>
+              </div>
+            </div>
+          </Link>
         </li>
       ))}
     </ul>
@@ -44,11 +40,9 @@ function PostList() {
 
 export default function HomePage() {
   return (
-    <main className="max-w-[48em]">
-      <header>
-        <h1 className="mb-[2lh] text-xs font-normal uppercase leading-5">
-          BRAINRACK
-        </h1>
+    <main className="max-w-208">
+      <header className="mb-12">
+        <SiteMark />
       </header>
 
       <section>

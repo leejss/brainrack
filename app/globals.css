@@ -1,6 +1,20 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+:root {
+  --accent: #a65d45;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --accent: #e28a6b;
+  }
+}
+
+@theme inline {
+  --color-accent: var(--accent);
+}
+
 .shiki,
 .shiki span {
   color: var(--shiki-light);
@@ -8,6 +22,10 @@
   font-style: var(--shiki-light-font-style);
   font-weight: var(--shiki-light-font-weight);
   text-decoration: var(--shiki-light-text-decoration);
+}
+
+.prose a {
+  @apply text-accent decoration-accent;
 }
 
 @media (prefers-color-scheme: dark) {

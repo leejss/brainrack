@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MarkdownContent } from "@/components/markdown-content";
+import { SiteMark } from "@/components/site-mark";
 import { getPostBySlug, getPostSlugs } from "@/lib/posts";
 
 const dateFormatter = new Intl.DateTimeFormat("ko-KR", {
@@ -43,18 +44,18 @@ export default async function PostPage({ params }: PostPageProps) {
   }
 
   return (
-    <main className="max-w-[48em]">
-      <Link className="mb-[1lh] block uppercase no-underline" href="/">
-        BRAINRACK <span aria-hidden="true">█</span>
-      </Link>
+    <main className="max-w-208">
+      <header className="mb-12">
+        <SiteMark />
+      </header>
       <Link
-        className="mb-[2lh] inline-block underline decoration-1 underline-offset-2 hover:no-underline"
+        className="mb-8 inline-block font-mono text-[11px] tracking-wider text-black/55 uppercase underline decoration-black/25 decoration-1 underline-offset-4 transition-colors hover:text-accent dark:text-white/55 dark:decoration-white/25"
         href="/"
       >
-        ← INDEX
+        ← ALL POSTS
       </Link>
       <article>
-        <header className="mb-10 border-b border-black/10 pb-8 dark:border-white/10">
+        <header className="mb-10 border-b border-l-2 border-black/10 border-l-accent pb-8 pl-5 dark:border-white/10">
           <h1 className="font-sans text-3xl leading-tight font-bold tracking-tight sm:text-4xl">
             {post.title}
           </h1>
@@ -63,7 +64,6 @@ export default async function PostPage({ params }: PostPageProps) {
           </p>
           <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 font-mono text-[11px] tracking-wider text-neutral-500 uppercase dark:text-neutral-400">
             <span className="flex items-center gap-2">
-              <span>PUBLISHED</span>
               <time
                 className="text-neutral-800 dark:text-neutral-200"
                 dateTime={post.publishedAt}
@@ -76,7 +76,7 @@ export default async function PostPage({ params }: PostPageProps) {
                 href={post.sourceUrl}
                 target="_blank"
                 rel="noreferrer noopener"
-                className="text-neutral-800 underline decoration-1 underline-offset-2 hover:no-underline dark:text-neutral-200"
+                className="text-neutral-800 underline decoration-1 underline-offset-2 transition-colors hover:text-accent dark:text-neutral-200"
               >
                 SOURCE ↗
               </a>
