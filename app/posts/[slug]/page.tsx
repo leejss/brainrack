@@ -54,25 +54,31 @@ export default async function PostPage({ params }: PostPageProps) {
         ← INDEX
       </Link>
       <article>
-        <header className="mb-[2lh]">
-          <h1 className="mb-[1lh] font-semibold uppercase before:font-normal before:text-black/50 before:content-['##_'] dark:before:text-white/50">
+        <header className="mb-10 border-b border-black/10 pb-8 dark:border-white/10">
+          <h1 className="font-sans text-3xl leading-tight font-bold tracking-tight sm:text-4xl">
             {post.title}
           </h1>
-          <p className="mb-[1lh] text-black/50 dark:text-white/50">
+          <p className="mt-4 font-sans text-base leading-7 text-neutral-600 dark:text-neutral-400">
             {post.description}
           </p>
-          <div className="flex flex-col items-start gap-x-[2ch] text-black/50 dark:text-white/50 sm:flex-row sm:flex-wrap">
-            <time dateTime={post.publishedAt}>
-              DATE: {dateFormatter.format(new Date(post.publishedAt))}
-            </time>
+          <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 font-mono text-[11px] tracking-wider text-neutral-500 uppercase dark:text-neutral-400">
+            <span className="flex items-center gap-2">
+              <span>PUBLISHED</span>
+              <time
+                className="text-neutral-800 dark:text-neutral-200"
+                dateTime={post.publishedAt}
+              >
+                {dateFormatter.format(new Date(post.publishedAt))}
+              </time>
+            </span>
             {post.sourceUrl ? (
               <a
                 href={post.sourceUrl}
                 target="_blank"
                 rel="noreferrer noopener"
-                className="underline decoration-1 underline-offset-2 hover:no-underline"
+                className="text-neutral-800 underline decoration-1 underline-offset-2 hover:no-underline dark:text-neutral-200"
               >
-                SOURCE: [LINK]
+                SOURCE ↗
               </a>
             ) : null}
           </div>
